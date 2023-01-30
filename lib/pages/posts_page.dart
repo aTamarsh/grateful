@@ -1,5 +1,4 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 
 class PostsPage extends StatefulWidget {
   const PostsPage({super.key});
@@ -9,8 +8,21 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
+  late double _deviceHeight, _deviceWidth;
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    _deviceHeight = MediaQuery.of(context).size.height;
+    _deviceWidth = MediaQuery.of(context).size.width;
+
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: _deviceWidth * 0.05,
+        vertical: _deviceHeight * 0.02,
+      ),
+      height: _deviceHeight,
+      width: _deviceWidth,
+      child: const Placeholder(),
+    );
   }
 }
