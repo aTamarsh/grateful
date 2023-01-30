@@ -16,23 +16,17 @@ class _HomePageState extends State<HomePage> {
     const PostsPage(),
   ];
 
-  late double _deviceHeight, _deviceWidth;
-
   @override
   Widget build(BuildContext context) {
-    _deviceHeight = MediaQuery.of(context).size.height;
-    _deviceWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
-      appBar: AppBar(title: Text("Grateful"), centerTitle: true,),
+      appBar: AppBar(title: const Text("Grateful"), centerTitle: true,),
       bottomNavigationBar: gratefulBottomNavigationBar(),
       body: _pages[_currentPage],
     );
   }
   
   Widget gratefulBottomNavigationBar() {
-    return Container(
-      child: BottomNavigationBar(
+    return BottomNavigationBar(
         onTap: (_index) {
           setState(() {
            _currentPage = _index; 
@@ -51,7 +45,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
         currentIndex: _currentPage,
-      )
     );
   }
 }
