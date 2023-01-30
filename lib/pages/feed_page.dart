@@ -16,9 +16,24 @@ class _FeedPageState extends State<FeedPage> {
     _deviceWidth = MediaQuery.of(context).size.width;
 
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: _deviceWidth * 0.05, vertical: _deviceHeight * 0.02),
       height: _deviceHeight,
       width: _deviceWidth,
-      child: const Placeholder(),
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            const Placeholder(),
+            const Text("🫶🏿", style: TextStyle(fontSize: 30)),
+            const Placeholder(),
+            SizedBox(height: _deviceHeight * 0.03),
+            const Text("Placeholder text for Quote Text"),
+            IconButton(
+              onPressed:() => print("button pressed"), 
+              icon: const Icon(Icons.lightbulb)
+            )
+          ],
+        ),
+      ),
     );
   }
 }
