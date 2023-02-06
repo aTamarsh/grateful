@@ -48,14 +48,16 @@ class _PostsPageState extends State<PostsPage> {
         future: Hive.openBox('posts'),
         builder:(BuildContext _context, AsyncSnapshot _snapshot) {
           if (_snapshot.hasData) {
-            _box = _snapshot.data;    // manually inserting record into Hive Box
+            _box = _snapshot.data;    
+            // manually inserting record into Hive Box
+            // TODO: needs to eventually be in new AlertDialog or TextField
             var _post = Post(
-              content: "Placeholder", 
+              content: "Placeholder TEST", 
               timestamp: DateTime.now(), 
               done: false,
             );
             _box!.add(_post.toMap());
-              return _postsList();
+            return _postsList();
             } else {
               return const Center(child: CircularProgressIndicator());
             }
