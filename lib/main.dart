@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Grateful',
+      title: 'The Grateful Project',
       theme: ThemeData(
         useMaterial3: true,
         // primarySwatch: Colors.blue,

@@ -49,14 +49,6 @@ class _PostsPageState extends State<PostsPage> {
         builder:(BuildContext _context, AsyncSnapshot _snapshot) {
           if (_snapshot.hasData) {
             _box = _snapshot.data;    
-            // manually inserting record into Hive Box
-            // TODO: needs to eventually be in new AlertDialog or TextField
-            var _post = Post(
-              content: "Placeholder TEST", 
-              timestamp: DateTime.now(), 
-              done: false,
-            );
-            _box!.add(_post.toMap());
             return _postsList();
             } else {
               return const Center(child: CircularProgressIndicator());
@@ -74,18 +66,24 @@ class _PostsPageState extends State<PostsPage> {
       itemBuilder:(BuildContext _context, int _index) {
         var post = Post.fromMap(posts[_index]);
         return ListTile(
-          // needs to eventually have TextStyle with decoration for post.done;
+          // TODO: add TextStyle with decoration for post.done;
           title: Text(post.content),
           subtitle: Text(post.timestamp.toString()),
-          // trailing icon needs to be a tertiary condition for user updates
-          trailing: const Icon(Icons.check_box_outline_blank),
+          trailing: Icon(
+            post.done 
+              ? Icons.check_box_outlined 
+              : Icons.check_box_outline_blank
+          ),
           onTap:() {
-            UnimplementedError();
-            // TODO: "Update" code here for updating a Post.
+            setState(() {
+              post.done = !post.done;
+              _box!.putAt(_index, post.toMap());
+            });
           },
           onLongPress:() {
-            UnimplementedError();
             // TODO: "Delete" code here for deleting a Post.
+            // _box!.deleteAt(_index);
+            // setState(() {});
           },
         );
       },
