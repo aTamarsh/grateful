@@ -58,16 +58,21 @@ class _PostsPageState extends State<PostsPage> {
       );
     }
 
-    Widget _postsList() {
-      List posts = _box!.values.toList();
+  Widget _postsList() {
+    List posts = _box!.values.toList();
 
     return ListView.builder(
       itemCount: posts.length,
       itemBuilder:(BuildContext _context, int _index) {
         var post = Post.fromMap(posts[_index]);
         return ListTile(
-          // TODO: add TextStyle with decoration for post.done;
-          title: Text(post.content),
+          title: Text(
+            post.content,
+            style: TextStyle(
+              decoration: post.done ? TextDecoration.lineThrough 
+                                    : TextDecoration.none
+            ),
+          ),
           subtitle: Text(post.timestamp.toString()),
           trailing: Icon(
             post.done 
@@ -82,8 +87,6 @@ class _PostsPageState extends State<PostsPage> {
           },
           onLongPress:() {
             // TODO: "Delete" code here for deleting a Post.
-            // _box!.deleteAt(_index);
-            // setState(() {});
           },
         );
       },
