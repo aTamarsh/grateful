@@ -10,7 +10,7 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
-  late double _deviceHeight, _deviceWidth;
+  late double _deviceWidth;
 
   String _quoteText = "Tap the bulb to get inspired";
   String _quoteAuthor = "Grateful Team";
@@ -21,7 +21,6 @@ class _FeedPageState extends State<FeedPage> {
   @override
   Widget build(BuildContext context) {
     var colorScheme = Theme.of(context).colorScheme;
-    _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -82,13 +81,13 @@ class _FeedPageState extends State<FeedPage> {
   }
 
   Future<void> _getQuote() async {
-    const String _apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
-    var _response = await _dio.get(_apiUrl);
-    var _quoteData = _response.data;
-    var _quote = _quoteData[_random.nextInt(_quoteData.length)];
+    const String apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
+    var response = await _dio.get(apiUrl);
+    var quoteData = response.data;
+    var quote = quoteData[_random.nextInt(quoteData.length)];
     setState(() {
-      _quoteText = _quote["text"];
-      _quoteAuthor = _quote["author"];
+      _quoteText = quote["text"];
+      _quoteAuthor = quote["author"];
     });
   }
    
