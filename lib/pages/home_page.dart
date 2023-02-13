@@ -43,29 +43,37 @@ class _HomePageState extends State<HomePage> {
   Widget gratefulBottomNavigationBar(BuildContext context) {
     var colorScheme = Theme.of(context).colorScheme;
 
-    return BottomNavigationBar(
-      backgroundColor: colorScheme.primaryContainer,
-      unselectedItemColor: colorScheme.onPrimaryContainer,
-      selectedItemColor: colorScheme.onPrimaryContainer,
-      showUnselectedLabels: false,
-        onTap: (_index) {
-          setState(() {
-           _currentPage = _index; 
-          });
-        },
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: "Feed",
-            activeIcon: Icon(Icons.home_filled),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.volunteer_activism_outlined),
-            label: "Posts",
-            activeIcon: Icon(Icons.volunteer_activism),
-          ),
-        ],
-        currentIndex: _currentPage,
+    return Container(
+      decoration: BoxDecoration(
+        color: colorScheme.onPrimaryContainer,
+        border: Border(
+          top: BorderSide(color: colorScheme.onPrimaryContainer, width: 1.0),
+        ),
+      ),
+      child: BottomNavigationBar(
+        backgroundColor: colorScheme.primaryContainer,
+        unselectedItemColor: colorScheme.onPrimaryContainer,
+        selectedItemColor: colorScheme.onPrimaryContainer,
+        showUnselectedLabels: false,
+          onTap: (_index) {
+            setState(() {
+             _currentPage = _index; 
+            });
+          },
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              label: "Feed",
+              activeIcon: Icon(Icons.home_filled),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.volunteer_activism_outlined),
+              label: "Posts",
+              activeIcon: Icon(Icons.volunteer_activism),
+            ),
+          ],
+          currentIndex: _currentPage,
+      ),
     );
   }
 }

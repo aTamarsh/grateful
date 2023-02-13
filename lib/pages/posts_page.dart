@@ -15,7 +15,7 @@ class _PostsPageState extends State<PostsPage> {
   String? _newPostContent;
   Box? _box;
 
-  final String _instructions = """✍🏾 write a new post by tapping the button below\n💌 practice gratitude by taking action on the post\n🗑️ delete a post by pressing down and holding it""";
+  final String _instructions = """✍🏾 write what you are grateful for\n💌 practice gratitude by taking action on it\n🗑️ delete a post by pressing down and holding it""";
 
   _PostsPageState();
 
@@ -25,19 +25,25 @@ class _PostsPageState extends State<PostsPage> {
     _deviceWidth = MediaQuery.of(context).size.width;
     var colorScheme = Theme.of(context).colorScheme;
 
-    return Container(
-      padding: EdgeInsets.all(_padding(context)),
-      height: _deviceHeight,
-      width: _deviceWidth,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          _pageTitleBanner(colorScheme),
-          _postView(context),
-          _addPostButton(),
-        ],
+    return Scaffold(
+      backgroundColor: colorScheme.primaryContainer,
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(_padding(context)),
+              child: _pageTitleBanner(colorScheme),
+            ),
+            _postView(context),
+            Padding(
+              padding: EdgeInsets.all(_padding(context)),
+              child: _addPostButton(context),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -59,13 +65,18 @@ class _PostsPageState extends State<PostsPage> {
         Text(
               "Posts", 
               style: TextStyle(
-                fontSize: 20, 
+                fontSize: 18, 
                 color: colorScheme.onPrimaryContainer,
+                decoration: TextDecoration.underline,
                 letterSpacing: 1.0,
               ),
         ),
         Text(
           _instructions,
+          style: TextStyle(
+            color: colorScheme.onPrimaryContainer,
+            fontSize: 14,
+          )
         ),
       ],
     );
@@ -92,10 +103,12 @@ class _PostsPageState extends State<PostsPage> {
     var colorScheme = Theme.of(context).colorScheme;
 
     return ListView.builder(
+      padding: EdgeInsets.all(_padding(context)),
       itemCount: posts.length,
       itemBuilder:(BuildContext _context, int _index) {
         var post = Post.fromMap(posts[_index]);
         return ListTile(
+          contentPadding: EdgeInsets.all(_padding(context)),
           textColor: colorScheme.onPrimaryContainer,
           iconColor: colorScheme.onPrimaryContainer,
           title: Text(
@@ -125,8 +138,11 @@ class _PostsPageState extends State<PostsPage> {
     );
   }
     
-  Widget _addPostButton() {
+  Widget _addPostButton(BuildContext context) {
+    var colorScheme = Theme.of(context).colorScheme;
     return FloatingActionButton(
+      backgroundColor: colorScheme.onPrimaryContainer,
+      foregroundColor: colorScheme.primary,
       onPressed:() {
         UnimplementedError();
         // TODO: "Create" Code here for writing a new Post.
