@@ -23,7 +23,7 @@ class _FeedPageState extends State<FeedPage> {
         child: Column(
           children: <Widget>[
             const Placeholder(),
-            const Text("🫶🏿", style: TextStyle(fontSize: 30)),
+            const Text("🫶🏾", style: TextStyle(fontSize: 30)),
             const Placeholder(),
             SizedBox(height: _deviceHeight * 0.03),
             const Text("Placeholder text for Quote Text"),

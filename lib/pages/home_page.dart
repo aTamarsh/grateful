@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentPage = 0;
+
   final List<Widget> _pages = [
     const FeedPage(),
     const PostsPage(),
@@ -18,15 +19,35 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
-      appBar: AppBar(title: const Text("Grateful"), centerTitle: true,),
-      bottomNavigationBar: gratefulBottomNavigationBar(),
+      appBar: AppBar(
+        backgroundColor: colorScheme.primaryContainer,
+        title: Text(
+          "Grateful", 
+          style: TextStyle(
+            color: colorScheme.onPrimaryContainer,
+            fontWeight: FontWeight.w500,
+            letterSpacing: 1.0
+          ),
+        ), 
+        centerTitle: true,
+      ),
+      bottomNavigationBar: gratefulBottomNavigationBar(context),
       body: _pages[_currentPage],
+      backgroundColor: colorScheme.primaryContainer,
     );
   }
   
-  Widget gratefulBottomNavigationBar() {
+  Widget gratefulBottomNavigationBar(BuildContext context) {
+    var colorScheme = Theme.of(context).colorScheme;
+
     return BottomNavigationBar(
+      backgroundColor: colorScheme.primaryContainer,
+      unselectedItemColor: colorScheme.onPrimaryContainer,
+      selectedItemColor: colorScheme.onPrimaryContainer,
+      showUnselectedLabels: false,
         onTap: (_index) {
           setState(() {
            _currentPage = _index; 

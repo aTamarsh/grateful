@@ -15,18 +15,18 @@ class _PostsPageState extends State<PostsPage> {
   String? _newPostContent;
   Box? _box;
 
+  final String _instructions = """✍🏾 write a new post by tapping the button below\n💌 practice gratitude by taking action on the post\n🗑️ delete a post by pressing down and holding it""";
+
   _PostsPageState();
 
   @override
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
+    var colorScheme = Theme.of(context).colorScheme;
 
     return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: _deviceWidth * 0.05,
-        vertical: _deviceHeight * 0.02,
-      ),
+      padding: EdgeInsets.all(_padding(context)),
       height: _deviceHeight,
       width: _deviceWidth,
       child: Column(
@@ -34,22 +34,51 @@ class _PostsPageState extends State<PostsPage> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const Text("Posts", style: TextStyle(fontSize: 20)),
-          _postView(),
+          _pageTitleBanner(colorScheme),
+          _postView(context),
           _addPostButton(),
         ],
       ),
     );
   }
+
+  double _padding(BuildContext context) {
+    if (MediaQuery.of(context).orientation == Orientation.landscape) {
+      return MediaQuery.of(context).size.width * 0.05;
+    } else {
+      return MediaQuery.of(context).size.width * 0.03;
+    }
+  }
+
+  Column _pageTitleBanner(ColorScheme colorScheme) {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+              "Posts", 
+              style: TextStyle(
+                fontSize: 20, 
+                color: colorScheme.onPrimaryContainer,
+                letterSpacing: 1.0,
+              ),
+        ),
+        Text(
+          _instructions,
+        ),
+      ],
+    );
+  }
     
-  Widget _postView() {
+  Widget _postView(BuildContext context) {
     return Expanded(
       child: FutureBuilder(
         future: Hive.openBox('posts'),
         builder:(BuildContext _context, AsyncSnapshot _snapshot) {
           if (_snapshot.hasData) {
             _box = _snapshot.data;    
-            return _postsList();
+            return _postsList(context);
             } else {
               return const Center(child: CircularProgressIndicator());
             }
@@ -58,14 +87,17 @@ class _PostsPageState extends State<PostsPage> {
       );
     }
 
-  Widget _postsList() {
+  Widget _postsList(BuildContext context) {
     List posts = _box!.values.toList();
+    var colorScheme = Theme.of(context).colorScheme;
 
     return ListView.builder(
       itemCount: posts.length,
       itemBuilder:(BuildContext _context, int _index) {
         var post = Post.fromMap(posts[_index]);
         return ListTile(
+          textColor: colorScheme.onPrimaryContainer,
+          iconColor: colorScheme.onPrimaryContainer,
           title: Text(
             post.content,
             style: TextStyle(
@@ -76,8 +108,8 @@ class _PostsPageState extends State<PostsPage> {
           subtitle: Text(post.timestamp.toString()),
           trailing: Icon(
             post.done 
-              ? Icons.check_box_outlined 
-              : Icons.check_box_outline_blank
+              ? Icons.check_box_outlined
+              : Icons.volunteer_activism
           ),
           onTap:() {
             setState(() {
