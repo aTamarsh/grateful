@@ -88,7 +88,7 @@ class _PostsPageState extends State<PostsPage> {
         future: Hive.openBox('posts'),
         builder:(BuildContext _context, AsyncSnapshot _snapshot) {
           if (_snapshot.hasData) {
-            _box = _snapshot.data;    
+            _box = _snapshot.data;     
             return _postsList(context);
             } else {
               return const Center(child: CircularProgressIndicator());
