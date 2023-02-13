@@ -57,10 +57,12 @@ class _FeedPageState extends State<FeedPage> {
                 padding: EdgeInsets.only(bottom: _padding(context)),
                 child: IconButton(
                   onPressed:() async {
+                    print("button pressed");
+
                     const String _apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
                     var _response = await _dio.get(_apiUrl);
-                    print("button pressed");
-                    print(_response);
+                    var _data = _response.data;
+                    print(_data[0]);
                   }, 
                   icon: Icon(
                     Icons.lightbulb, 
