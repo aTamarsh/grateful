@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +12,11 @@ class FeedPage extends StatefulWidget {
 class _FeedPageState extends State<FeedPage> {
   late double _deviceHeight, _deviceWidth;
 
-  String _quoteText = "Tap below to get inspired";
-  bool _displaying = false;
+  String _quoteText = "Tap the bulb to get inspired";
+  String _quoteAuthor = "Grateful Team";
 
   final Dio _dio = Dio();
+  final _random = Random();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +29,7 @@ class _FeedPageState extends State<FeedPage> {
       body: Center(
         child: SingleChildScrollView(
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -38,7 +39,7 @@ class _FeedPageState extends State<FeedPage> {
               ),
               Padding(
                 padding: EdgeInsets.all(_padding(context)),
-                child: Text("🫶🏾", style: TextStyle(fontSize: 30)),
+                child: const Text("🫶🏾", style: TextStyle(fontSize: 30)),
               ),
               Padding(
                 padding: EdgeInsets.all(_padding(context)),
@@ -46,27 +47,20 @@ class _FeedPageState extends State<FeedPage> {
               ),
               Padding(
                 padding: EdgeInsets.all(_padding(context)),
-                child: Text(
-                  _quoteText,
-                  style: TextStyle(
-                    color: colorScheme.onPrimaryContainer,
-                  ),
-                ),
+                child: _quoteBanner(colorScheme),
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: _padding(context)),
                 child: IconButton(
+                  iconSize: (_deviceWidth * .10),
+                  tooltip: "Tap the lightbulb to get inspired.",
                   onPressed:() async {
-                    print("button pressed");
-
-                    const String _apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
-                    var _response = await _dio.get(_apiUrl);
-                    var _data = _response.data;
-                    print(_data[0]);
+                    await _getQuote();
                   }, 
                   icon: Icon(
                     Icons.lightbulb, 
                     color: colorScheme.onPrimaryContainer,
+                    semanticLabel: "Tap the lightbulb to get inspired.",
                   ),
                 ),
               )
@@ -76,19 +70,28 @@ class _FeedPageState extends State<FeedPage> {
       ),
     );
   }
-  
-  // Future<String> _getQuote() async {
-  //   const String apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
-  //   try {
-  //     var _response = await _dio.get(apiUrl);
-  //     var _quotes = jsonDecode(_response.toString());
-  //     var _quote = _response[1]["text"];
-  //   } catch (e) {
-  //     print("An exception occurred."); 
-  //     return "Inspirational Quote load failed.";
-  //   } 
-  // }
-  
+
+  Text _quoteBanner(ColorScheme colorScheme) {
+    return Text(
+                "$_quoteText\n- $_quoteAuthor",
+                style: TextStyle(
+                  color: colorScheme.onPrimaryContainer,
+                ),
+                softWrap: true,
+              );
+  }
+
+  Future<void> _getQuote() async {
+    const String _apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
+    var _response = await _dio.get(_apiUrl);
+    var _quoteData = _response.data;
+    var _quote = _quoteData[_random.nextInt(_quoteData.length)];
+    setState(() {
+      _quoteText = _quote["text"];
+      _quoteAuthor = _quote["author"];
+    });
+  }
+   
   double _padding(BuildContext context) {
     if (MediaQuery.of(context).orientation == Orientation.landscape) {
       return MediaQuery.of(context).size.width * 0.05;
