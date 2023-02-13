@@ -34,22 +34,10 @@ class _FeedPageState extends State<FeedPage> {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.all(_padding(context)),
-                child: const Placeholder(),
-              ),
-              Padding(
-                padding: EdgeInsets.all(_padding(context)),
-                child: const Text("🫶🏾", style: TextStyle(fontSize: 30)),
-              ),
-              Padding(
-                padding: EdgeInsets.all(_padding(context)),
-                child: const Placeholder(),
-              ),
-              Padding(
-                padding: EdgeInsets.all(_padding(context)),
                 child: _quoteBanner(colorScheme),
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: _padding(context)),
+                padding: EdgeInsets.all(_padding(context)),
                 child: IconButton(
                   iconSize: (_deviceWidth * .10),
                   tooltip: "Tap the lightbulb to get inspired.",
@@ -62,7 +50,19 @@ class _FeedPageState extends State<FeedPage> {
                     semanticLabel: "Tap the lightbulb to get inspired.",
                   ),
                 ),
-              )
+              ),
+              Padding(
+                padding: EdgeInsets.all(_padding(context)),
+                child: const Placeholder(),
+              ),
+              Padding(
+                padding: EdgeInsets.all(_padding(context)),
+                child: const Text("🫶🏾", style: TextStyle(fontSize: 30)),
+              ),
+              Padding(
+                padding: EdgeInsets.all(_padding(context)),
+                child: const Placeholder(),
+              ),              
             ],
           ),
         ),
