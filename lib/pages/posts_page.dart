@@ -37,7 +37,7 @@ class _PostsPageState extends State<PostsPage> {
               padding: EdgeInsets.all(_padding(context)),
               child: _pageTitleBanner(colorScheme),
             ),
-            _postView(context),
+            _postView(),
             Padding(
               padding: EdgeInsets.all(_padding(context)),
               child: _addPostButton(context),
@@ -82,21 +82,21 @@ class _PostsPageState extends State<PostsPage> {
     );
   }
     
-  Widget _postView(BuildContext context) {
+  Widget _postView() {
     return Expanded(
       child: FutureBuilder(
         future: Hive.openBox('posts'),
         builder:(BuildContext _context, AsyncSnapshot _snapshot) {
           if (_snapshot.hasData) {
             _box = _snapshot.data;     
-            return _postsList(context);
+            return _postsList(_context);
             } else {
               return const Center(child: CircularProgressIndicator());
             }
           },
         ),
       );
-    }
+  }
 
   Widget _postsList(BuildContext context) {
     List posts = _box!.values.toList();
