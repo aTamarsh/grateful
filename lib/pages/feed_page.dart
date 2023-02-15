@@ -29,13 +29,15 @@ class _FeedPageState extends State<FeedPage> {
 
     return Scaffold(
       backgroundColor: colorScheme.primaryContainer,
-      body: Center(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              const ExpandedTile(title: gratitudeInfo),
+              _paddedHeartHandsEmoji(context),
+              const ExpandedTile(title: writingInfo),
               Padding(
                 padding: EdgeInsets.all(_padding(context)),
                 child: _quoteBanner(colorScheme),
@@ -55,24 +57,17 @@ class _FeedPageState extends State<FeedPage> {
                   ),
                 ),
               ),
-              ExpandedTile(),
-              Padding(
-                padding: EdgeInsets.all(_padding(context)),
-                child: const Placeholder(),
-              ),
-              Padding(
-                padding: EdgeInsets.all(_padding(context)),
-                child: const Text("🫶🏾", style: TextStyle(fontSize: 30)),
-              ),
-              Padding(
-                padding: EdgeInsets.all(_padding(context)),
-                child: const Placeholder(),
-              ),              
             ],
           ),
         ),
-      ),
-    );
+      );
+  }
+
+  Padding _paddedHeartHandsEmoji(BuildContext context) {
+    return Padding(
+              padding: EdgeInsets.all(_padding(context)),
+              child: const Text("🫶🏾", style: TextStyle(fontSize: 30)),
+            );
   }
 
   Text _quoteBanner(ColorScheme colorScheme) {
