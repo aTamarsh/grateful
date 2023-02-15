@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:grateful/widgets/expanded_tile.dart';
 
-const String gratitudeInfo = "🫶🏾 Practicing Gratitude is Good";
-const String writingInfo = "✍🏿🧠 Writing Everyday is Great";
+const String gratitudeInfoTitle = "🫶🏾 Practicing Gratitude is Good";
+const String writingInfoTitle = "✍🏿 Writing Everyday is Great";
 
 class FeedPage extends StatefulWidget {
   const FeedPage({super.key});
@@ -28,16 +28,16 @@ class _FeedPageState extends State<FeedPage> {
     _deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: colorScheme.primaryContainer,
+      backgroundColor: colorScheme.primary,
       body: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              const ExpandedTile(title: gratitudeInfo),
+              const ExpandedTile(title: gratitudeInfoTitle),
               _paddedHeartHandsEmoji(context),
-              const ExpandedTile(title: writingInfo),
+              const ExpandedTile(title: writingInfoTitle),
               Padding(
                 padding: EdgeInsets.all(_padding(context)),
                 child: _quoteBanner(colorScheme),
@@ -52,7 +52,7 @@ class _FeedPageState extends State<FeedPage> {
                   }, 
                   icon: Icon(
                     Icons.lightbulb, 
-                    color: colorScheme.onPrimaryContainer,
+                    color: colorScheme.onPrimary,
                     semanticLabel: "Tap the lightbulb to get inspired.",
                   ),
                 ),
@@ -74,7 +74,7 @@ class _FeedPageState extends State<FeedPage> {
     return Text(
                 "$_quoteText\n- $_quoteAuthor",
                 style: TextStyle(
-                  color: colorScheme.onPrimaryContainer,
+                  color: colorScheme.onPrimary,
                 ),
                 softWrap: true,
               );

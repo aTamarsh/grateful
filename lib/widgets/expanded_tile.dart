@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const placeholderText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet tristique neque, vel rhoncus est. Donec nisl tortor, hendrerit vitae eleifend nec, mattis sit amet tortor. Curabitur neque neque, accumsan id orci eu, dignissim molestie orci. Vivamus dui magna, lacinia ut tellus vitae, pellentesque tincidunt magna. Cras ac eros vitae neque eleifend semper. Ut a elit quis justo venenatis bibendum a fermentum ex. Maecenas sed lorem iaculis, luctus sem eu, semper massa. Maecenas a sagittis ante. In mollis sapien odio, nec vulputate purus pharetra sit amet.";
+
 class ExpandedTile extends StatelessWidget {
   final String title;
 
@@ -13,21 +15,29 @@ class ExpandedTile extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(15.0)),
       ),
-      elevation: 2,
+      elevation: 4,
       margin: EdgeInsets.all(_padding(context)),
-      color: colorScheme.primaryContainer,
+      color: colorScheme.onPrimary,
       child: Padding(
         padding: EdgeInsets.all(_padding(context)),
         child: ExpansionTile(
           title: _buildTile(context, title),
-          trailing: const Icon(Icons.keyboard_arrow_down),
+          trailing: Icon(
+            Icons.keyboard_arrow_down,
+            color: colorScheme.primary,
+          ),
           children: <Widget> [
             Padding(
               padding: EdgeInsets.all(_padding(context)),
               child: Row(
                 children: const <Widget> [
                   Expanded(
-                    child: Text("Lorem ipsum dolor sit amet, consectetur"),
+                    child: Text(
+                      placeholderText,
+                      style: TextStyle(
+                        color: Colors.black,
+                      )
+                    ),
                   )
                 ]
               ),
@@ -55,7 +65,7 @@ class ExpandedTile extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimaryContainer, 
+                color: Theme.of(context).colorScheme.primary, 
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),
