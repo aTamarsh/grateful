@@ -1,6 +1,10 @@
 import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:grateful/widgets/expanded_tile.dart';
+
+const String gratitudeInfo = "🫶🏾 Practicing Gratitude is Good";
+const String writingInfo = "✍🏿🧠 Writing Everyday is Great";
 
 class FeedPage extends StatefulWidget {
   const FeedPage({super.key});
@@ -51,6 +55,7 @@ class _FeedPageState extends State<FeedPage> {
                   ),
                 ),
               ),
+              ExpandedTile(),
               Padding(
                 padding: EdgeInsets.all(_padding(context)),
                 child: const Placeholder(),
