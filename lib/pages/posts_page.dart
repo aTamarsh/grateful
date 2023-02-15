@@ -143,11 +143,54 @@ class _PostsPageState extends State<PostsPage> {
     return FloatingActionButton(
       backgroundColor: colorScheme.onPrimaryContainer,
       foregroundColor: colorScheme.primary,
+      tooltip: "Tap to write a new Grateful post",
       onPressed:() {
-        UnimplementedError();
-        // TODO: "Create" Code here for writing a new Post.
+        _displayCreatePostPopup(colorScheme);
       },
       child: const Icon(Icons.add),
     );
   }
+
+  void _displayCreatePostPopup(ColorScheme colorScheme) {
+    showDialog(
+      context: context, 
+      builder: (BuildContext _context) {
+        return AlertDialog(
+          backgroundColor: colorScheme.onPrimaryContainer,
+          iconColor: colorScheme.onPrimaryContainer,
+          scrollable: true,
+          title: Text(
+            "New Grateful Post", 
+            style: TextStyle(
+              color: colorScheme.primary,
+              )
+          ),
+          content: TextField(
+            decoration: const InputDecoration(
+              labelText: "I'm grateful for ... ",
+            ),
+            onChanged: (_value) {
+              setState(() => _newPostContent = _value);
+            },
+            onSubmitted: (_) {
+              if (_newPostContent != null) {
+                var _post = Post(
+                  content: _newPostContent!, 
+                  timestamp: DateTime.now(), 
+                  done: false,
+                );
+                _box!.add(_post.toMap());
+                setState(() {
+                  _newPostContent = null;
+                  Navigator.pop(context);
+                });
+              } 
+            },
+          ),
+        );
+      }     
+    );
+  }
+
+
 }
