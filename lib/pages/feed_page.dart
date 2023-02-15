@@ -30,34 +30,34 @@ class _FeedPageState extends State<FeedPage> {
     return Scaffold(
       backgroundColor: colorScheme.primary,
       body: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const ExpandedTile(title: gratitudeInfoTitle),
-              _paddedHeartHandsEmoji(context),
-              const ExpandedTile(title: writingInfoTitle),
-              Padding(
-                padding: EdgeInsets.all(_padding(context)),
-                child: _quoteBanner(colorScheme),
-              ),
-              Padding(
-                padding: EdgeInsets.all(_padding(context)),
-                child: IconButton(
-                  iconSize: (_deviceWidth * .10),
-                  tooltip: "Tap the lightbulb to get inspired.",
-                  onPressed:() async {
-                    await _getQuote();
-                  }, 
-                  icon: Icon(
-                    Icons.lightbulb, 
-                    color: colorScheme.onPrimary,
-                    semanticLabel: "Tap the lightbulb to get inspired.",
+          child: Padding(
+            padding: EdgeInsets.all(_padding(context)),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const ExpandedTile(title: gratitudeInfoTitle),
+                _paddedHeartHandsEmoji(context),
+                const ExpandedTile(title: writingInfoTitle),
+                _paddedQuoteBanner(context, colorScheme),
+                Padding(
+                  padding: EdgeInsets.all(_padding(context)),
+                  child: IconButton(
+                    iconSize: (_deviceWidth * .10),
+                    tooltip: "Tap the lightbulb to get inspired.",
+                    onPressed:() async {
+                      await _getQuote();
+                    }, 
+                    icon: Icon(
+                      Icons.lightbulb, 
+                      color: colorScheme.onPrimary,
+                      semanticLabel: "Tap the lightbulb to get inspired.",
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );
@@ -68,6 +68,13 @@ class _FeedPageState extends State<FeedPage> {
               padding: EdgeInsets.all(_padding(context)),
               child: const Text("🫶🏾", style: TextStyle(fontSize: 30)),
             );
+  }
+
+  Padding _paddedQuoteBanner(BuildContext context, ColorScheme colorScheme) {
+    return Padding(
+                padding: EdgeInsets.all(_padding(context)),
+                child: _quoteBanner(colorScheme),
+              );
   }
 
   Text _quoteBanner(ColorScheme colorScheme) {
