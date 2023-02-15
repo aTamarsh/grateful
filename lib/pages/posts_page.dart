@@ -157,7 +157,8 @@ class _PostsPageState extends State<PostsPage> {
       builder: (BuildContext _context) {
         return AlertDialog(
           backgroundColor: colorScheme.onPrimaryContainer,
-          iconColor: colorScheme.onPrimaryContainer,
+          icon: const Icon(Icons.volunteer_activism),
+          iconColor: colorScheme.primary,
           scrollable: true,
           title: Text(
             "New Grateful Post", 
@@ -173,24 +174,36 @@ class _PostsPageState extends State<PostsPage> {
               setState(() => _newPostContent = _value);
             },
             onSubmitted: (_) {
-              if (_newPostContent != null) {
-                var _post = Post(
-                  content: _newPostContent!, 
-                  timestamp: DateTime.now(), 
-                  done: false,
-                );
-                _box!.add(_post.toMap());
-                setState(() {
-                  _newPostContent = null;
-                  Navigator.pop(context);
-                });
-              } 
+              _setNewPost(); 
             },
           ),
+          actions: <Widget> [
+            TextButton( 
+              onPressed: () => Navigator.of(context).pop(), 
+              child: Text("Cancel", style: TextStyle(color: colorScheme.error)),
+            ),
+            TextButton(
+              onPressed: () => _setNewPost(), 
+              child: Text("Save", style: TextStyle(color: colorScheme.primary)),
+            )
+          ],
         );
       }     
     );
   }
 
-
+  void _setNewPost() {
+    if (_newPostContent != null) {
+      var _post = Post(
+        content: _newPostContent!, 
+        timestamp: DateTime.now(), 
+        done: false,
+      );
+      _box!.add(_post.toMap());
+      setState(() {
+        _newPostContent = null;
+        Navigator.pop(context);
+      });
+    } 
+  }
 }
