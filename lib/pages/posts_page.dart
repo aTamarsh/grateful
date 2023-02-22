@@ -131,7 +131,8 @@ class _PostsPageState extends State<PostsPage> {
             });
           },
           onLongPress:() {
-            // TODO: "Delete" code here for deleting a Post.
+            _box!.deleteAt(_index);
+            setState(() {});
           },
         );
       },
