@@ -110,6 +110,12 @@ class _PostsPageState extends State<PostsPage> {
           onDismissed: (DismissDirection direction) {
             _box!.deleteAt(_index);
             setState(() {});
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: const Text("Grateful Post Deleted."),
+                backgroundColor: colorScheme.error,
+              )
+            );
           },
           child: ListTile(
             contentPadding: EdgeInsets.all(_padding(context)),
@@ -137,6 +143,12 @@ class _PostsPageState extends State<PostsPage> {
             onLongPress:() {
               _box!.deleteAt(_index);
               setState(() {});
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: const Text("Grateful Post Deleted."),
+                  backgroundColor: colorScheme.error,
+                ),
+              );
             },
           ),
         );
