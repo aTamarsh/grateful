@@ -14,7 +14,7 @@ class _PostsPageState extends State<PostsPage> {
   String? _newPostContent;
   Box? _box;
 
-  final String _instructions = """✍🏾 write what you are grateful for\n💌 practice gratitude by taking action on it\n🗑️ delete a post by pressing down and holding it""";
+  final String _instructions = """✍🏾 write what you are grateful for\n💌 practice gratitude by taking action on it\n🗑️ delete a post by swiping on it, or press & hold""";
 
   _PostsPageState();
 
@@ -104,33 +104,41 @@ class _PostsPageState extends State<PostsPage> {
       itemCount: posts.length,
       itemBuilder:(BuildContext _context, int _index) {
         var post = Post.fromMap(posts[_index]);
-        return ListTile(
-          contentPadding: EdgeInsets.all(_padding(context)),
-          textColor: colorScheme.onPrimaryContainer,
-          iconColor: colorScheme.onPrimaryContainer,
-          title: Text(
-            post.content,
-            style: TextStyle(
-              decoration: post.done ? TextDecoration.lineThrough 
-                                    : TextDecoration.none
-            ),
-          ),
-          subtitle: Text(post.timestamp.toString()),
-          trailing: Icon(
-            post.done 
-              ? Icons.check_box_outlined
-              : Icons.volunteer_activism
-          ),
-          onTap:() {
-            setState(() {
-              post.done = !post.done;
-              _box!.putAt(_index, post.toMap());
-            });
-          },
-          onLongPress:() {
+        return Dismissible(
+          background: Container(color: colorScheme.error),
+          key: ValueKey<int>(_index),
+          onDismissed: (DismissDirection direction) {
             _box!.deleteAt(_index);
             setState(() {});
           },
+          child: ListTile(
+            contentPadding: EdgeInsets.all(_padding(context)),
+            textColor: colorScheme.onPrimaryContainer,
+            iconColor: colorScheme.onPrimaryContainer,
+            title: Text(
+              post.content,
+              style: TextStyle(
+                decoration: post.done ? TextDecoration.lineThrough 
+                                      : TextDecoration.none
+              ),
+            ),
+            subtitle: Text(post.timestamp.toString()),
+            trailing: Icon(
+              post.done 
+                ? Icons.check_box_outlined
+                : Icons.volunteer_activism
+            ),
+            onTap:() {
+              setState(() {
+                post.done = !post.done;
+                _box!.putAt(_index, post.toMap());
+              });
+            },
+            onLongPress:() {
+              _box!.deleteAt(_index);
+              setState(() {});
+            },
+          ),
         );
       },
     );
