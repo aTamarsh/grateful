@@ -10,7 +10,6 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
-  late double _deviceHeight, _deviceWidth;
 
   String? _newPostContent;
   Box? _box;
@@ -21,8 +20,6 @@ class _PostsPageState extends State<PostsPage> {
 
   @override
   Widget build(BuildContext context) {
-    _deviceHeight = MediaQuery.of(context).size.height;
-    _deviceWidth = MediaQuery.of(context).size.width;
     var colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
