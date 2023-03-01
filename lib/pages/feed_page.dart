@@ -38,8 +38,9 @@ class _FeedPageState extends State<FeedPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 const ExpandedTile(title: gratitudeInfoTitle),
-                _paddedHeartHandsEmoji(context),
+                _paddedEmoji(context, "🫶🏾"),
                 const ExpandedTile(title: writingInfoTitle),
+                _paddedEmoji(context, "💬"),
                 _paddedQuoteBanner(context, colorScheme),
                 _paddedAuthorBanner(context, colorScheme),
                 Padding(
@@ -64,11 +65,13 @@ class _FeedPageState extends State<FeedPage> {
       );
   }
 
-  Padding _paddedHeartHandsEmoji(BuildContext context) {
+  Padding _paddedEmoji(BuildContext context, String emoji) {
     return Padding(
-              padding: EdgeInsets.all(_padding(context)),
-              child: const Text("🫶🏾", style: TextStyle(fontSize: 30)),
-            );
+      padding: EdgeInsets.all(_padding(context)),
+      child: Text(
+        emoji, 
+        style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.08))
+    );
   }
 
   Padding _paddedQuoteBanner(BuildContext context, ColorScheme colorScheme) {
