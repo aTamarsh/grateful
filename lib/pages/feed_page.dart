@@ -41,6 +41,7 @@ class _FeedPageState extends State<FeedPage> {
                 _paddedHeartHandsEmoji(context),
                 const ExpandedTile(title: writingInfoTitle),
                 _paddedQuoteBanner(context, colorScheme),
+                _paddedAuthorBanner(context, colorScheme),
                 Padding(
                   padding: EdgeInsets.all(_padding(context)),
                   child: IconButton(
@@ -73,18 +74,50 @@ class _FeedPageState extends State<FeedPage> {
   Padding _paddedQuoteBanner(BuildContext context, ColorScheme colorScheme) {
     return Padding(
                 padding: EdgeInsets.all(_padding(context)),
-                child: _quoteBanner(colorScheme),
+                child: _quoteBanner(context, colorScheme),
               );
   }
 
-  Text _quoteBanner(ColorScheme colorScheme) {
-    return Text(
-                "$_quoteText\n- $_quoteAuthor",
+  Text _quoteBanner(BuildContext context, ColorScheme colorScheme) {
+    double deviceWidth = MediaQuery.of(context).size.width; 
+    if (_quoteText.length > 80) {
+      return Text(
+        _quoteText, 
+        textAlign: TextAlign.justify,
+        style: TextStyle(
+          fontSize: deviceWidth * 0.04,
+          color: colorScheme.onPrimary
+        )
+      );
+    } else {
+      return Text(
+                _quoteText,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: colorScheme.onPrimary,
+                  fontSize: deviceWidth * 0.07,
                 ),
                 softWrap: true,
-              );
+      );
+    }
+  }
+
+  Padding _paddedAuthorBanner(BuildContext context, ColorScheme colorScheme) {
+    return Padding(
+      padding: EdgeInsets.all(_padding(context)),
+      child: _authorBanner(colorScheme),
+    );
+  }
+
+  Text _authorBanner(ColorScheme colorScheme) {
+    return Text(
+      _quoteAuthor,
+      style: TextStyle(
+        color: colorScheme.onPrimary,
+        fontSize: 20,
+      ),
+      softWrap: true,
+    );
   }
 
   Future<void> _getQuote() async {
