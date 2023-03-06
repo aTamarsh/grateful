@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:grateful/widgets/expanded_tile.dart';
 
 const String gratitudeInfoTitle = "🫶🏾 Practicing Gratitude is Good";
@@ -8,6 +9,8 @@ const String writingInfoTitle = "✍🏿 Writing Everyday is Great";
 
 class FeedPage extends StatefulWidget {
   const FeedPage({super.key});
+
+  static const CONTENT_FILE = "assets/content/info.json";
 
   @override
   State<FeedPage> createState() => _FeedPageState();
