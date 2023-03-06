@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'The Grateful Project',
       theme: ThemeData(
         useMaterial3: true,
+        fontFamily: 'ProximaNova'
       ),
       home: const HomePage(),
     );
