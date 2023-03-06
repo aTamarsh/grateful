@@ -9,9 +9,6 @@ const String writingInfoTitle = "✍🏿 Writing Everyday is Great";
 
 class FeedPage extends StatefulWidget {
   const FeedPage({super.key});
-
-  static const CONTENT_FILE = "assets/content/info.json";
-
   @override
   State<FeedPage> createState() => _FeedPageState();
 }
@@ -40,9 +37,19 @@ class _FeedPageState extends State<FeedPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const ExpandedTile(title: gratitudeInfoTitle),
+                // const ExpandedTile(title: gratitudeInfoTitle),
+                const ExpandedTile(
+                  title: gratitudeInfoTitle, 
+                  content: "Placeholder content", 
+                  author: "Placeholder author",
+                ),
                 _paddedEmoji(context, "🫶🏾"),
-                const ExpandedTile(title: writingInfoTitle),
+                // const ExpandedTile(title: writingInfoTitle),
+                const ExpandedTile(
+                  title: writingInfoTitle, 
+                  content: "Placeholder", 
+                  author: "Placeholder",
+                ),
                 _paddedEmoji(context, "💬"),
                 _paddedQuoteBanner(context, colorScheme),
                 _paddedAuthorBanner(context, colorScheme),

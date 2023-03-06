@@ -4,8 +4,15 @@ const placeholderText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit
 
 class ExpandedTile extends StatelessWidget {
   final String title;
+  final String content;
+  final String author;
 
-  const ExpandedTile({super.key, required this.title});
+  const ExpandedTile({
+    super.key, 
+    required this.title,
+    required this.content,
+    required this.author,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +29,7 @@ class ExpandedTile extends StatelessWidget {
         padding: EdgeInsets.all(_padding(context)),
         child: ExpansionTile(
           title: _buildTile(context, title),
+          subtitle: Text(author),
           trailing: Icon(
             Icons.keyboard_arrow_down,
             color: colorScheme.primary,
