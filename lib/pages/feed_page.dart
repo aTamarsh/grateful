@@ -82,7 +82,10 @@ class _FeedPageState extends State<FeedPage> {
       padding: EdgeInsets.all(_padding(context)),
       child: Text(
         emoji, 
-        style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.08))
+        style: TextStyle(
+          fontSize: MediaQuery.of(context).size.width * 0.08
+        ),
+      ),
     );
   }
 
