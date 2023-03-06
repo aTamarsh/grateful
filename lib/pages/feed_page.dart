@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:grateful/widgets/expanded_tile.dart';
 
 const String gratitudeInfoTitle = "🫶🏾 Practicing Gratitude is Good";
