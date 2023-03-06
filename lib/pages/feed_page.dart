@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,12 @@ import 'package:flutter/services.dart';
 import 'package:grateful/widgets/expanded_tile.dart';
 
 const String gratitudeInfoTitle = "🫶🏾 Practicing Gratitude is Good";
+const String gratitudeInfoAuthor = "Mayo Clinic";
+const String gratitudeInfoContent = "Expressing gratitude is associated with a host of mental and physical benefits. Studies have shown that feeling thankful can improve sleep, mood, and immunity. Gratitude can decrease depression, anxiety, difficulties with chronic pain, and risk of disease.";
+
 const String writingInfoTitle = "✍🏿 Writing Everyday is Great";
+const String writingInfoAuthor = "Mayo Clinic";
+const String writingInfoContent = "Gratitude journaling is a fantastic way to develop a regular practice of appreciating things you are grateful for, and as the old saying goes, practice makes perfect. The act of writing something helps to retrain our brain towards that of thankfulness more than just creating a mental gratitude list.  Specifically, when we use multiple avenues such as thinking, writing and sharing, we have the advantage of increasing the speed at which we train our brain towards appreciation.";
 
 class FeedPage extends StatefulWidget {
   const FeedPage({super.key});
@@ -37,18 +43,16 @@ class _FeedPageState extends State<FeedPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                // const ExpandedTile(title: gratitudeInfoTitle),
                 const ExpandedTile(
                   title: gratitudeInfoTitle, 
-                  content: "Placeholder content", 
-                  author: "Placeholder author",
-                ),
+                  author: gratitudeInfoAuthor,
+                  content: gratitudeInfoContent, 
+                ),  
                 _paddedEmoji(context, "🫶🏾"),
-                // const ExpandedTile(title: writingInfoTitle),
                 const ExpandedTile(
                   title: writingInfoTitle, 
-                  content: "Placeholder", 
-                  author: "Placeholder",
+                  author: writingInfoAuthor,
+                  content: writingInfoContent, 
                 ),
                 _paddedEmoji(context, "💬"),
                 _paddedQuoteBanner(context, colorScheme),

@@ -38,11 +38,11 @@ class ExpandedTile extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(_padding(context)),
               child: Row(
-                children: const <Widget> [
+                children: <Widget> [
                   Expanded(
                     child: Text(
-                      placeholderText,
-                      style: TextStyle(
+                      content,
+                      style: const TextStyle(
                         color: Colors.black,
                       )
                     ),
