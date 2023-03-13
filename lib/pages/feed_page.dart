@@ -46,7 +46,13 @@ class _FeedPageState extends State<FeedPage> {
                   author: gratitudeInfoAuthor,
                   content: gratitudeInfoContent, 
                 ),  
-                _paddedEmoji(context, "🫶🏾"),
+                Padding(
+                  padding: EdgeInsets.all(_padding(context)),
+                  child: Image.asset(
+                    "assets/images/grateful_cat.png",
+                    height: _deviceWidth * 0.25,
+                  ),
+                ),
                 const ExpandedTile(
                   title: writingInfoTitle, 
                   author: writingInfoAuthor,

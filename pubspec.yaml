@@ -65,6 +65,7 @@ flutter:
   # assets:
   assets: 
     - assets/content/info.json
+    - assets/images/grateful_cat.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
