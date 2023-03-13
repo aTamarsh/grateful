@@ -14,12 +14,7 @@ class MyApp extends StatelessWidget {
         colorScheme: lightColorScheme,
         useMaterial3: true,
         fontFamily: 'ProximaNova',
-        canvasColor: lightColorScheme.primary,
-        appBarTheme: AppBarTheme(
-          backgroundColor: lightColorScheme.primary,
-        )
       ),
-
       home: const HomePage(),
     );
   }

@@ -83,6 +83,9 @@ flutter:
     - family: ProximaNova
       fonts: 
         - asset: assets/fonts/ProximaNova.ttf
+    - family: LibreBaskerville
+      fonts:
+        - asset: assets/fonts/LibreBaskerville-Regular.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

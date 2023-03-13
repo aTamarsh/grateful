@@ -32,7 +32,7 @@ class _FeedPageState extends State<FeedPage> {
     _deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: colorScheme.primary,
+      backgroundColor: colorScheme.primaryContainer,
       body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(_padding(context)),
@@ -65,7 +65,7 @@ class _FeedPageState extends State<FeedPage> {
                     }, 
                     icon: Icon(
                       Icons.lightbulb, 
-                      color: colorScheme.onPrimary,
+                      color: colorScheme.primary,
                       semanticLabel: "Tap the lightbulb to get inspired.",
                     ),
                   ),
@@ -103,8 +103,9 @@ class _FeedPageState extends State<FeedPage> {
         _quoteText, 
         textAlign: TextAlign.justify,
         style: TextStyle(
+          fontFamily: "LibreBakserville",
           fontSize: deviceWidth * 0.04,
-          color: colorScheme.onPrimary
+          color: colorScheme.primary
         )
       );
     } else {
@@ -112,7 +113,8 @@ class _FeedPageState extends State<FeedPage> {
                 _quoteText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: colorScheme.onPrimary,
+                  fontFamily: "LibreBaskerville",
+                  color: colorScheme.primary,
                   fontSize: deviceWidth * 0.07,
                 ),
                 softWrap: true,
@@ -131,7 +133,7 @@ class _FeedPageState extends State<FeedPage> {
     return Text(
       _quoteAuthor,
       style: TextStyle(
-        color: colorScheme.onPrimary,
+        color: colorScheme.primary,
         fontSize: 20,
       ),
       softWrap: true,

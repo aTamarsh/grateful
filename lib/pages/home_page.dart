@@ -27,8 +27,8 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           "Grateful", 
           style: TextStyle(
-            color: colorScheme.onPrimaryContainer,
-            fontWeight: FontWeight.w500,
+            color: colorScheme.primary,
+            fontWeight: FontWeight.w600,
             letterSpacing: 1.0
           ),
         ), 
