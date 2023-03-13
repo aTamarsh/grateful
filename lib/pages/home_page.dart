@@ -27,8 +27,9 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           "Grateful", 
           style: TextStyle(
+            fontFamily: "LibreBaskerville",
             color: colorScheme.primary,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
             letterSpacing: 1.0
           ),
         ), 
@@ -45,15 +46,18 @@ class _HomePageState extends State<HomePage> {
 
     return Container(
       decoration: BoxDecoration(
-        color: colorScheme.onPrimaryContainer,
+        color: colorScheme.primary,
         border: Border(
-          top: BorderSide(color: colorScheme.onPrimaryContainer, width: 1.0),
+          top: BorderSide(
+            color: colorScheme.primary, 
+            width: 1.0
+          ),
         ),
       ),
       child: BottomNavigationBar(
         backgroundColor: colorScheme.primaryContainer,
-        unselectedItemColor: colorScheme.onPrimaryContainer,
-        selectedItemColor: colorScheme.onPrimaryContainer,
+        unselectedItemColor: colorScheme.primary,
+        selectedItemColor: colorScheme.primary,
         showUnselectedLabels: false,
           onTap: (_index) {
             setState(() {

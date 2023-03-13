@@ -24,15 +24,20 @@ class ExpandedTile extends StatelessWidget {
       ),
       elevation: 4,
       margin: EdgeInsets.all(_padding(context)),
-      color: colorScheme.onPrimary,
+      color: colorScheme.primary,
       child: Padding(
         padding: EdgeInsets.all(_padding(context)),
         child: ExpansionTile(
           title: _buildTile(context, title),
-          subtitle: Text(author),
+          subtitle: Text(
+            author,
+            style: TextStyle(
+              color: colorScheme.onPrimary
+            ),
+          ),
           trailing: Icon(
             Icons.keyboard_arrow_down,
-            color: colorScheme.primary,
+            color: colorScheme.onPrimary,
           ),
           children: <Widget> [
             Padding(
@@ -42,8 +47,8 @@ class ExpandedTile extends StatelessWidget {
                   Expanded(
                     child: Text(
                       content,
-                      style: const TextStyle(
-                        color: Colors.black,
+                      style: TextStyle(
+                        color: colorScheme.onPrimary,
                       )
                     ),
                   )
@@ -73,7 +78,7 @@ class ExpandedTile extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                color: Theme.of(context).colorScheme.primary, 
+                color: Theme.of(context).colorScheme.onPrimary, 
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),
