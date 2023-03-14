@@ -94,7 +94,7 @@ class _StartPageState extends State<StartPage> {
                 "Grateful",
                 style: TextStyle(
                   color: colorScheme.primary,
-                  fontSize: _deviceHeight! * 0.05,
+                  fontSize: _deviceHeight * 0.05,
                   letterSpacing: 2,
                   fontFamily: "LibreBaskerville"
                 )

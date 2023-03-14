@@ -1,7 +1,7 @@
-import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:grateful/models/post.dart';
+import 'package:intl/intl.dart';
 
 const String _instructions = """✍🏾 write who/what you are grateful for\n💌 practice gratitude by taking action on that post\n🗑️ delete a post by swiping on it, or pressing & holding it""";
 
@@ -107,28 +107,20 @@ class _PostsPageState extends State<PostsPage> {
         var post = Post.fromMap(posts[_index]);
         return Dismissible(
           key: ValueKey<int>(_index),
+          background: _backgroundContainerOnDismiss(colorScheme),
           onDismissed: (DismissDirection direction) {
             _box!.deleteAt(_index);
             setState(() {});
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: const Text("Grateful Post Deleted."),
-                backgroundColor: colorScheme.primary,
-              )
+              _deleteConfirmationSnackBar(colorScheme)
             );
           },
           child: ListTile(
             contentPadding: EdgeInsets.all(_padding(context)),
-            textColor: colorScheme.onPrimaryContainer,
-            iconColor: colorScheme.onPrimaryContainer,
-            title: Text(
-              post.content,
-              style: TextStyle(
-                decoration: post.done ? TextDecoration.lineThrough 
-                                      : TextDecoration.none
-              ),
-            ),
-            subtitle: Text(post.timestamp.toString()),
+            textColor: colorScheme.primary,
+            iconColor: colorScheme.primary,
+            title: _styledPostTitleContent(post),
+            subtitle: _styledPostSubtitleDateTime(post, colorScheme),
             trailing: Icon(
               post.done 
                 ? Icons.check_box_outlined
@@ -155,6 +147,57 @@ class _PostsPageState extends State<PostsPage> {
       },
     );
   }
+
+  Row _styledPostSubtitleDateTime(Post post, ColorScheme colorScheme) {
+    return Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                DateFormat.yMMMMEEEEd().format(post.timestamp).toString(),
+                textAlign: TextAlign.left,
+                style: TextStyle(color: colorScheme.secondary)
+              ),
+              Text("\tat\t", style: TextStyle(color: colorScheme.secondary)),
+              Text(
+                DateFormat.jm().format(post.timestamp).toString(),
+                textAlign: TextAlign.right,
+                style: TextStyle(color: colorScheme.secondary)
+              )
+            ],
+          );
+  }
+
+  Text _styledPostTitleContent(Post post) {
+    return Text(
+            post.content,
+            style: TextStyle(
+              decoration: post.done ? TextDecoration.lineThrough 
+                                    : TextDecoration.none
+            ),
+          );
+  }
+
+  SnackBar _deleteConfirmationSnackBar(ColorScheme colorScheme) {
+    return SnackBar(
+              content: const Text("Grateful Post Deleted."),
+              backgroundColor: colorScheme.primary,
+            );
+  }
+
+  Container _backgroundContainerOnDismiss(ColorScheme colorScheme) {
+    return Container(
+          color: colorScheme.error,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Icon(
+                Icons.delete,
+                color: colorScheme.onError,
+              ),
+            ]
+          )
+        );
+  }
     
   Widget _addPostButton(BuildContext context) {
     var colorScheme = Theme.of(context).colorScheme;
@@ -174,21 +217,16 @@ class _PostsPageState extends State<PostsPage> {
       context: context, 
       builder: (BuildContext _context) {
         return AlertDialog(
-          backgroundColor: colorScheme.primary,
+          backgroundColor: colorScheme.primaryContainer,
           icon: const Icon(Icons.volunteer_activism),
-          iconColor: colorScheme.onPrimary,
+          iconColor: colorScheme.primary,
           scrollable: true,
-          title: Text(
-            "New Grateful Post", 
-            style: TextStyle(
-              color: colorScheme.onPrimary,
-              )
-          ),
+          title: _styledAlertDialogTitle(colorScheme),
           content: TextField(
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
               labelText: "I'm grateful for...",
-              labelStyle: TextStyle(color: colorScheme.onPrimary),
+              labelStyle: TextStyle(color: colorScheme.primary),
             ),
             onChanged: (_value) {
               setState(() => _newPostContent = _value);
@@ -200,16 +238,34 @@ class _PostsPageState extends State<PostsPage> {
           actions: <Widget> [
             TextButton( 
               onPressed: () => Navigator.of(context).pop(), 
-              child: Text("Cancel", style: TextStyle(color: colorScheme.onPrimary)),
+              child: Text(
+                "Cancel", 
+                style: TextStyle(
+                  color: colorScheme.error,
+                )
+              ),
             ),
             TextButton(
               onPressed: () => _setNewPost(), 
-              child: Text("Save", style: TextStyle(color: colorScheme.onPrimary)),
+              child: const Text(
+                "Save", 
+                style: 
+                TextStyle(color: Colors.blue)
+              ),
             )
           ],
         );
       }     
     );
+  }
+
+  Text _styledAlertDialogTitle(ColorScheme colorScheme) {
+    return Text(
+          "New Grateful Post", 
+          style: TextStyle(
+            color: colorScheme.primary,
+            )
+        );
   }
 
   void _setNewPost() {
@@ -226,5 +282,4 @@ class _PostsPageState extends State<PostsPage> {
       });
     } 
   }
-
 }
