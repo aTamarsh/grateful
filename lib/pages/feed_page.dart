@@ -52,7 +52,7 @@ class _FeedPageState extends State<FeedPage> {
                   author: writingInfoAuthor,
                   content: writingInfoContent, 
                 ),
-                SizedBox(height: _deviceHeight * 0.10,),
+                SizedBox(height: _deviceHeight * 0.03),
                 _paddedQuoteBanner(context, colorScheme),
                 _paddedAuthorBanner(context, colorScheme),
                 Padding(
@@ -69,6 +69,11 @@ class _FeedPageState extends State<FeedPage> {
                       semanticLabel: "Tap the lightbulb to get inspired.",
                     ),
                   ),
+                ),
+                Image.asset(
+                  "assets/images/grateful_user.png",
+                  width: _deviceWidth * 0.30,
+                  height: _deviceHeight * 0.15,
                 ),
               ],
             ),
