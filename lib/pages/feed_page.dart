@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:grateful/widgets/expanded_tile.dart';
 
-const String gratitudeInfoTitle = "🫶🏾 Practicing Gratitude is Good";
+const String gratitudeInfoTitle = "🫶 Practicing Gratitude is Good";
 const String gratitudeInfoAuthor = "Mayo Clinic";
 const String gratitudeInfoContent = "Expressing gratitude is associated with a host of mental and physical benefits. Studies have shown that feeling thankful can improve sleep, mood, and immunity. Gratitude can decrease depression, anxiety, difficulties with chronic pain, and risk of disease.";
 

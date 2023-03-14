@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: 'start',
       routes: {
-        'start':(context) => StartPage(),
+        'start':(context) => const StartPage(),
         'home':(context) => const HomePage()
       }
     );
