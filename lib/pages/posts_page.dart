@@ -1,6 +1,9 @@
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:grateful/models/post.dart';
+
+const String _instructions = """✍🏾 write who/what you are grateful for\n💌 practice gratitude by taking action on that post\n🗑️ delete a post by swiping on it, or pressing & holding it""";
 
 class PostsPage extends StatefulWidget {
   const PostsPage({super.key});
@@ -10,17 +13,14 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
-
   String? _newPostContent;
   Box? _box;
-
-  final String _instructions = """✍🏾 write what you are grateful for\n💌 practice gratitude by taking action on it\n🗑️ delete a post by swiping on it, or press & hold""";
 
   _PostsPageState();
 
   @override
   Widget build(BuildContext context) {
-    var colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
       backgroundColor: colorScheme.primaryContainer,
@@ -63,13 +63,14 @@ class _PostsPageState extends State<PostsPage> {
               "Posts", 
               style: TextStyle(
                 fontSize: 18, 
-                color: colorScheme.onPrimaryContainer,
+                color: colorScheme.primary,
                 decoration: TextDecoration.underline,
                 letterSpacing: 1.0,
               ),
         ),
         Text(
           _instructions,
+          textAlign: TextAlign.justify,
           style: TextStyle(
             color: colorScheme.onPrimaryContainer,
             fontSize: 14,
@@ -105,7 +106,6 @@ class _PostsPageState extends State<PostsPage> {
       itemBuilder:(BuildContext _context, int _index) {
         var post = Post.fromMap(posts[_index]);
         return Dismissible(
-          background: Container(color: colorScheme.error),
           key: ValueKey<int>(_index),
           onDismissed: (DismissDirection direction) {
             _box!.deleteAt(_index);
@@ -113,7 +113,7 @@ class _PostsPageState extends State<PostsPage> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: const Text("Grateful Post Deleted."),
-                backgroundColor: colorScheme.error,
+                backgroundColor: colorScheme.primary,
               )
             );
           },
@@ -146,7 +146,7 @@ class _PostsPageState extends State<PostsPage> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: const Text("Grateful Post Deleted."),
-                  backgroundColor: colorScheme.error,
+                  backgroundColor: colorScheme.primary,
                 ),
               );
             },
@@ -159,8 +159,8 @@ class _PostsPageState extends State<PostsPage> {
   Widget _addPostButton(BuildContext context) {
     var colorScheme = Theme.of(context).colorScheme;
     return FloatingActionButton(
-      backgroundColor: colorScheme.onPrimaryContainer,
-      foregroundColor: colorScheme.primary,
+      backgroundColor: colorScheme.primary,
+      foregroundColor: colorScheme.onPrimary,
       tooltip: "Tap to write a new Grateful post",
       onPressed:() {
         _displayCreatePostPopup(colorScheme);
@@ -174,19 +174,21 @@ class _PostsPageState extends State<PostsPage> {
       context: context, 
       builder: (BuildContext _context) {
         return AlertDialog(
-          backgroundColor: colorScheme.onPrimaryContainer,
+          backgroundColor: colorScheme.primary,
           icon: const Icon(Icons.volunteer_activism),
-          iconColor: colorScheme.primary,
+          iconColor: colorScheme.onPrimary,
           scrollable: true,
           title: Text(
             "New Grateful Post", 
             style: TextStyle(
-              color: colorScheme.primary,
+              color: colorScheme.onPrimary,
               )
           ),
           content: TextField(
-            decoration: const InputDecoration(
-              labelText: "I'm grateful for ... ",
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+              labelText: "I'm grateful for...",
+              labelStyle: TextStyle(color: colorScheme.onPrimary),
             ),
             onChanged: (_value) {
               setState(() => _newPostContent = _value);
@@ -198,11 +200,11 @@ class _PostsPageState extends State<PostsPage> {
           actions: <Widget> [
             TextButton( 
               onPressed: () => Navigator.of(context).pop(), 
-              child: Text("Cancel", style: TextStyle(color: colorScheme.error)),
+              child: Text("Cancel", style: TextStyle(color: colorScheme.onPrimary)),
             ),
             TextButton(
               onPressed: () => _setNewPost(), 
-              child: Text("Save", style: TextStyle(color: colorScheme.primary)),
+              child: Text("Save", style: TextStyle(color: colorScheme.onPrimary)),
             )
           ],
         );

@@ -27,48 +27,64 @@ class _StartPageState extends State<StartPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _appTitleWidget(colorScheme),
-                Image.asset(
-                  "assets/images/grateful_cat.png", 
-                  height: _deviceHeight * 0.25,
-                  width: _deviceWidth * 0.25,
-                ),
-                Text(
-                  "The more grateful I am,\nthe more beauty I see.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: _deviceWidth * 0.05,
-                    color: colorScheme.primary,
-                    fontFamily: "LibreBaskerville"
-                  )
-                ),
-                MaterialButton(
-                  onPressed: _startApp,
-                  minWidth: _deviceWidth * 0.70,
-                  height: _deviceHeight * 0.06,
-                  color: colorScheme.primary,
-                  child: Text(
-                    "Start",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      fontSize: _deviceWidth * 0.05,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 1,
-                    ),
-                  ),
-                ),
-                Text(
-                  "from\nTamarsh Abeysekera", 
-                  style: TextStyle(
-                    color: colorScheme.primary
-                  ),
-                  textAlign: TextAlign.center,
-                ),
+                _appStartImage(),
+                _appStartQuote(colorScheme),
+                _appStartButton(colorScheme, context),
+                _appAuthor(colorScheme),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  Text _appAuthor(ColorScheme colorScheme) {
+    return Text(
+                "from\nTamarsh Abeysekera", 
+                style: TextStyle(
+                  color: colorScheme.primary
+                ),
+                textAlign: TextAlign.center,
+              );
+  }
+
+  MaterialButton _appStartButton(ColorScheme colorScheme, BuildContext context) {
+    return MaterialButton(
+                onPressed: _startApp,
+                minWidth: _deviceWidth * 0.70,
+                height: _deviceHeight * 0.06,
+                color: colorScheme.primary,
+                child: Text(
+                  "Start",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    fontSize: _deviceWidth * 0.05,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1,
+                  ),
+                ),
+              );
+  }
+
+  Text _appStartQuote(ColorScheme colorScheme) {
+    return Text(
+                "The more grateful I am,\nthe more beauty I see.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: _deviceWidth * 0.05,
+                  color: colorScheme.primary,
+                  fontFamily: "LibreBaskerville"
+                )
+              );
+  }
+
+  Image _appStartImage() {
+    return Image.asset(
+                "assets/images/grateful_cat.png", 
+                height: _deviceHeight * 0.25,
+                width: _deviceWidth * 0.25,
+              );
   }
 
   void _startApp() async => Navigator.popAndPushNamed(context, 'home');
