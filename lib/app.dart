@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grateful/color_schemes.g.dart';
 import 'package:grateful/pages/home_page.dart';
+import 'package:grateful/pages/start_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,7 +16,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'ProximaNova',
       ),
-      home: const HomePage(),
+      initialRoute: 'start',
+      routes: {
+        'start':(context) => StartPage(),
+        'home':(context) => const HomePage()
+      }
     );
   }
 }

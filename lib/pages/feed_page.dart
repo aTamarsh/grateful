@@ -18,7 +18,7 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
-  late double _deviceWidth;
+  late double _deviceWidth, _deviceHeight;
 
   String _quoteText = "Tap the bulb to get inspired";
   String _quoteAuthor = "Grateful Team";
@@ -30,6 +30,7 @@ class _FeedPageState extends State<FeedPage> {
   Widget build(BuildContext context) {
     var colorScheme = Theme.of(context).colorScheme;
     _deviceWidth = MediaQuery.of(context).size.width;
+    _deviceHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: colorScheme.primaryContainer,
@@ -46,19 +47,12 @@ class _FeedPageState extends State<FeedPage> {
                   author: gratitudeInfoAuthor,
                   content: gratitudeInfoContent, 
                 ),  
-                Padding(
-                  padding: EdgeInsets.all(_padding(context)),
-                  child: Image.asset(
-                    "assets/images/grateful_cat.png",
-                    height: _deviceWidth * 0.25,
-                  ),
-                ),
                 const ExpandedTile(
                   title: writingInfoTitle, 
                   author: writingInfoAuthor,
                   content: writingInfoContent, 
                 ),
-                _paddedEmoji(context, "💬"),
+                SizedBox(height: _deviceHeight * 0.10,),
                 _paddedQuoteBanner(context, colorScheme),
                 _paddedAuthorBanner(context, colorScheme),
                 Padding(
