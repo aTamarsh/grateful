@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 const placeholderText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet tristique neque, vel rhoncus est. Donec nisl tortor, hendrerit vitae eleifend nec, mattis sit amet tortor. Curabitur neque neque, accumsan id orci eu, dignissim molestie orci. Vivamus dui magna, lacinia ut tellus vitae, pellentesque tincidunt magna. Cras ac eros vitae neque eleifend semper. Ut a elit quis justo venenatis bibendum a fermentum ex. Maecenas sed lorem iaculis, luctus sem eu, semper massa. Maecenas a sagittis ante. In mollis sapien odio, nec vulputate purus pharetra sit amet.";
 
+/// ExpandedTile Widgets are used in the FeedPage to display information to 
+/// Grateful users.
 class ExpandedTile extends StatelessWidget {
   final String title;
   final String content;

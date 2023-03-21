@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grateful/pages/feed_page.dart';
 import 'package:grateful/pages/posts_page.dart';
 
+// HomePage houses routes to each BottomNavigationTab.
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
