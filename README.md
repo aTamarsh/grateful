@@ -1,25 +1,34 @@
 # grateful
 
-The Grateful project's purpose is to help people practice gratitude and reflect
-positively on their lives by writing about something or someone they are
-grateful for, everyday.
+*Grateful* is a mobile application for Android users to practice daily gratitude
+by writing every day.
 
-The Grateful project’s resulting product will be a mobile application for
-users to practice daily gratitude. Practicing gratitude helps people feel more
-positive emotions, relish good experiences, improve their health, deal with
-adversity, and build strong relationship. Accordingly, these mobile users
-will be practicing gratitude by writing about what they are grateful for while
-honing their writing skills.
+People who engage in daily gratitude tend to feel more positive emotions, relish
+good experiences, improve their health, deal with adversity better, and build
+stronger relationships. People will cultivate a greater sense of appreciation
+for the beauty in their lives by using *Grateful* and ultimately lead a more
+fulfilling and enriched life.
 
-## Getting Started
+## Installation & App Execution Instructions
 
-This project is a starting point for a Flutter application.
+1. [Flutter Installation Instructions](https://docs.flutter.dev/get-started/install)
 
-A few resources to get you started if this is your first Flutter project:
+Follow the installation instructions linked above and begin by selecting the
+operating system you are currently on. Follow the linked guide to install the
+requisite dependencies for your respective OS.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The above-linked Flutter documentation is written well and easy to follow. You
+should have no issues installing the required dependencies (especially on
+Windows).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Note that you do not need to "Set up your Android device." Just set up the
+Android emulator via Android Studio. The most "complicated" portion might be
+enabling VM acceleration on your Windows machine. The documentation thoroughly
+covers these steps.
+
+1. [Set up an editor](https://docs.flutter.dev/get-started/editor?tab=vscode)
+
+The next step is to set up an editor. The recommended one is VS Code because
+it comes with complete Fluter app execution and debug support.
+
+1. 
