@@ -1,3 +1,5 @@
+![Grateful](https://i.imgur.com/Q1x0ghO.png)
+
 # grateful
 
 *Grateful* is a mobile application for Android users to practice daily gratitude
